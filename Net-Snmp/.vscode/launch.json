@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Ubuntu_iMX6_share/3.Net_Snmp/Net-Snmp/USER",
-      "program": "d:/Ubuntu_iMX6_share/3.Net_Snmp/Net-Snmp/USER/build/Debug/outDebug",
+      "cwd": "d:/Ubuntu_iMX6_share/3.Net_SNMP/Net-Snmp/USER",
+      "program": "d:/Ubuntu_iMX6_share/3.Net_SNMP/Net-Snmp/USER/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
