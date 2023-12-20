@@ -11,7 +11,7 @@
 4. 配置`.configure`
 
     ```ASN.1
-    sudo ./configure  --prefix=/usr/local/snmp --with-default-snmp-version="2" --with-sys-contact="contact@contact" --with-sys-location="location" --with-logfile="/var/log/snmpd.log" --with-persistent-directory="/var/net-snmp"     --在虚拟机中使用，先不添加mib库
+    sudo ./configure  --prefix=/usr/local/snmp --with-default-snmp-version="3" --with-sys-contact="contact@contact" --with-sys-location="location" --with-logfile=/var/log/snmpd.log  --with-persistent-directory=/var/net-snmp     --在虚拟机中使用，先不添加mib库
     
     sudo ./configure --host=arm-linux --target=arm --with-cc=arm-linux-gnueabihf-gcc --with-ar=arm-linux-ar --with-endianness=little --enable-mini-agent --prefix=/usr/local/snmp --with-default-snmp-version="2" --with-sys-contact="contact@contact" --with-sys-location="location" --with-logfile="/var/log/snmpd.log" --with-persistent-directory="/var/net-snmp"     --在开发板上使用，先不添加mib库
     ```
@@ -57,11 +57,13 @@
     4) 将rocommunity public default -V systemmonly修改为rwcommunity public default
     ```
 
-11. 运行snmpd代理
+12. 运行snmpd代理
 
-     ```
-     执行命令：   /usr/local/snmp/sbin/snmpd -c /usr/local/snmp/etc/snmpd.conf    --运行snmpd代理程序，-c用于链接配置文件
-     ```
+      ```
+      执行命令： /usr/local/snmp/sbin/snmpd -c /usr/local/snmp/etc/snmpd.conf    --运行snmpd代理程序，-c用于链接配置文件
+      执行命令：  snmpd -Dread_config -H 2>&1 | grep "Reading"|sort -u:查看从哪里读取snmpd.conf配置文件
+      启动命令：./snmpd -Lo -f
+      ```
 
 12. 配置snmp工具的使用路径，这样子系统才能找到mib2c工具
 
@@ -403,11 +405,6 @@
 19. 生成的文件中`XX`的位置就是你要添加自己的业务![image-20231123091739027](./.assets/image-20231123091739027.png)
 20. 将生成的代码放到TEST文件夹下，然后拷贝文件夹到net-snmp源码目录的agent/mibgroup/目录下，进行编译，配置命令如下
 
-```c
-sudo ./configure --host=arm-linux --target=arm --with-cc=arm-linux-gcc --with-ar=arm-linux-ar --with-endianness=little --enable-mini-agent --prefix=/usr/local/snmp --with-mib-modules="device" --with-default-snmp-version="2" --with-sys-contact="contact@contact" --with-sys-location="location" --with-logfile="/var/log/snmpd.log" --with-persistent-directory="/var/net-snmp"   						  --在开发板上使用，添加mib模型
-    
-sudo ./configure --build=i686-linux --host=arm-linux --target=arm-linux --with-cc=arm-linux-gnueabihf-gcc --with-ar=arm-linux-gnueabihf-ar --with-endianness=little --enable-mini-agent --prefix=/usr/local/snmp --with-mib-modules="device" --with-default-snmp-version="2" --with-sys-contact="contact@contact" --with-sys-location="location" --with-logfile="/var/log/snmpd.log" --with-persistent-directory="/var/net-snmp"      --在开发板上使用，添加mib模型
-```
 21. 执行make clean后在执行make执行完毕后在执行make install进行安装
 
 22. 相关编译选项和库文件相关内容命令
@@ -441,11 +438,102 @@ c注：snmpd命令的有用选项
 ```
 iptables -I INPUT -p udp --dport 161 -j ACCEPT	设置指令
 iptables -L   查看指令
-netstat -an |grep 161   查看端口情况
+lsof -i:161 :查看端口
+netstat -lnp | grep snmpd : 列出所有与 snmpd 进程相关的正在监听的网络连接及其对应的进程信息
+netstat -an | grep 161  :查看端口情况
+netstat -aon|findstr 161 :widows下查看端口占用
 ps -e 查看所有进程
 net-snmp-config:查看配置命令
 iostat 查看系统IO状态
 ```
+
+## snmpd.conf配置文件的分析
+
+1. agentaddress命令用于定义协议和监听地址
+
+    ```c
+    agentaddress udp:161,tcp:1611,udp6:161,tcp6:1611
+    ```
+
+2. 基于系统安全的考虑，可以指定代理在某个用户组和用户下运行
+
+    ```c
+    agentgroup snmp  //用户组
+    agentuser nobody //用户
+    ```
+
+3. 优化性能查询，可以配置单个变量最大绑定数和最大响应数
+
+    ```c
+    maxGetbulkRepeats    2  // 最大Getbulk重复次数）用于控制SNMP管理器在执行GetBulk操作时重复获取变量的次数
+    maxGetbulkResponses  10 // 最大Getbulk响应数）用于控制SNMP代理在执行GetBulk操作时返回的最大响应数据包的数量
+    ```
+
+4. 系统监控配置
+
+    ```c
+    proc  init 1 1  //确保系统最少有一个线程
+     
+    proc  httpd   //最少一个httpd在运行
+    procfix httpd /etc/rc.d/init.d/httpd restart //如果检测到没有httpd没有运行时重新启动   如果没有配置则会产生noSuchObject错误
+        
+    disk  / 30% //磁盘监控，当系统的磁盘少于30%的时候，会产生错误
+        
+    load  7 6 5 //负载监控
+        
+    file  /var/log/snmpd.log 1024 //文件大小的监控
+    ```
+
+5. 主动监控，理论上代理端是等待管理发送请求命令之后做出反应的，那个也可以使用主动监控，主动发送trap
+
+    ```c
+    trapsink  192.168.166.196    [端口]   // SNMPv1 and   SNMPV2  trap receiver ip  
+    trap2sink  192.168.166.196   [端口]   // SNMPv2 and SNMPV3 trap receiver ip
+    informsink  192.168.166.196  [端口]   //用于配置SNMP代理接收SNMP v2c和SNMP v3版本的通知（inform）。通知（inform）是一种与陷阱类似的消息，但它要求接收方向发送回一个确认消息 
+    ```
+
+6. 分布式管理：实现这些MIB的设备能够实现自我的监控邻里监控，并以通告的方式报告异常
+
+    ```c
+    monitor [OPTIONS] NAME EXPRESSION //触发Trap的配置命令
+    /*定义一个监控的MIB对象，该对象的值满足表达式EXPRESSION时触发一次通告或SET请求。EXPRESSION支持3种类型的监控事件：OID是否存在测试（Existence）、布尔测试（Boolean）、阈值测试（Threshold）*/
+    例子：monitor -u MD5_User -o hrSWRunName "high process memory" hrSWRunPerfMem > 10000 //监控所有进程内存使用，当内存大于10MB时绑定hrSWRunName和用户MD5_User发送Trap（DisMan trap mteTriggerFired）
+        
+    /*两种监控计划: 周期性  定时性*/
+    repeat FREQUENCY OID = VALUE 			    //周期性的：表示每隔FREQUENCY秒将VALUE（整型数）赋值到OID
+    at MINUTE HOUR DAY MONTH WEEKDAY OID = VALUE //定时性：表示在具体的时间点执行设置操作
+    
+    /*例子：*/
+    /*周期读取配置文件：每小时读取配置文件*/
+    repeat 3600 versionUpdateConfig.0 = 1
+    /* 也可以在指定时刻读取配置文件*/
+    cron 31 17 20 12 52 versionUpdateConfig.0 = 1
+    ```
+
+7. VACM
+
+    >  SNMP v3中的安全机制主要由两部分实现：安全模型、安全传输
+
+    1. 安全模型：
+
+        ```C
+        USM（User-based Security Model，基于用户的安全模型）
+        VACM（View Access Control Model，基于视图的访问控制模型）
+        TSM（Transport Security Model，基于传输的安全模型，其实现了证书签名认证的机制）
+        KSM（kerberos-based SNMP security Model，基于kerbreos的SNMP安全模型）
+        ```
+
+    2. 安全传输
+
+        ```c
+        安全传输模块有UDP/UDPIP v6、TCP/TCPIP v6、TLS/DTLS、SSH、Kerberos等。这些模块有的是默认配置，有的需要读者自行配置进去
+        ```
+
+    > VACM提供了精确控制MIB访问的机制，可明确"谁"以什么样的方式和拥有什么权限来访问那些OID！！！！！
+
+    
+
+
 
 ##  管理端开发
 
@@ -874,4 +962,6 @@ int main(int argc, char **argv)
     return 0;
 }
 ```
+
+
 

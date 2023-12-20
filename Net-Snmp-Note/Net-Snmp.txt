@@ -1,0 +1,504 @@
+/*****	MIBS搜索的路径   ******/
+DIR /usr/local/share/snmp/mibs
+DISMAN-SCRIPT-MIB DISMAN-SCRIPT-MIB.txt
+BRIDGE-MIB BRIDGE-MIB.txt
+UCD-DISKIO-MIB UCD-DISKIO-MIB.txt
+NOTIFICATION-LOG-MIB NOTIFICATION-LOG-MIB.txt
+UDP-MIB UDP-MIB.txt
+EtherLike-MIB EtherLike-MIB.txt
+TRANSPORT-ADDRESS-MIB TRANSPORT-ADDRESS-MIB.txt
+RFC-1215 RFC-1215.txt
+UCD-DLMOD-MIB UCD-DLMOD-MIB.txt
+SNMP-MPD-MIB SNMP-MPD-MIB.txt
+IP-MIB IP-MIB.txt
+IPV6-MIB IPV6-MIB.txt
+RMON-MIB RMON-MIB.txt
+HOST-RESOURCES-TYPES HOST-RESOURCES-TYPES.txt
+UCD-SNMP-MIB UCD-SNMP-MIB.txt
+NET-SNMP-TC NET-SNMP-TC.txt
+NET-SNMP-EXTEND-MIB NET-SNMP-EXTEND-MIB.txt
+SNMPv2-MIB SNMPv2-MIB.txt
+UCD-IPFWACC-MIB UCD-IPFWACC-MIB.txt
+SCTP-MIB SCTP-MIB.txt
+RFC1155-SMI RFC1155-SMI.txt
+SNMP-TARGET-MIB SNMP-TARGET-MIB.txt
+NET-SNMP-PASS-MIB NET-SNMP-PASS-MIB.txt
+IF-INVERTED-STACK-MIB IF-INVERTED-STACK-MIB.txt
+UCD-DEMO-MIB UCD-DEMO-MIB.txt
+IPV6-ICMP-MIB IPV6-ICMP-MIB.txt
+IANAifType-MIB IANAifType-MIB.txt
+NET-SNMP-MIB NET-SNMP-MIB.txt
+IANA-RTPROTO-MIB IANA-RTPROTO-MIB.txt
+TUNNEL-MIB TUNNEL-MIB.txt
+DISMAN-SCHEDULE-MIB DISMAN-SCHEDULE-MIB.txt
+RFC1213-MIB RFC1213-MIB.txt
+SNMP-COMMUNITY-MIB SNMP-COMMUNITY-MIB.txt
+SNMP-USM-DH-OBJECTS-MIB SNMP-USM-DH-OBJECTS-MIB.txt
+SNMP-USM-AES-MIB SNMP-USM-AES-MIB.txt
+SNMPv2-TM SNMPv2-TM.txt
+SNMP-VIEW-BASED-ACM-MIB SNMP-VIEW-BASED-ACM-MIB.txt
+IANA-ADDRESS-FAMILY-NUMBERS-MIB IANA-ADDRESS-FAMILY-NUMBERS-MIB.txt
+IPV6-TCP-MIB IPV6-TCP-MIB.txt
+AGENTX-MIB AGENTX-MIB.txt
+SNMPv2-SMI SNMPv2-SMI.txt
+IF-MIB IF-MIB.txt
+SNMP-FRAMEWORK-MIB SNMP-FRAMEWORK-MIB.txt
+NET-SNMP-EXAMPLES-MIB NET-SNMP-EXAMPLES-MIB.txt
+IPV6-UDP-MIB IPV6-UDP-MIB.txt
+DISMAN-EVENT-MIB DISMAN-EVENT-MIB.txt
+HCNUM-TC HCNUM-TC.txt
+SMUX-MIB SMUX-MIB.txt
+NET-SNMP-VACM-MIB NET-SNMP-VACM-MIB.txt
+IPV6-FLOW-LABEL-MIB IPV6-FLOW-LABEL-MIB.txt
+SNMPv2-TC SNMPv2-TC.txt
+SNMP-USER-BASED-SM-MIB SNMP-USER-BASED-SM-MIB.txt
+IPV6-TC IPV6-TC.txt
+SNMP-TLS-TM-MIB SNMP-TLS-TM-MIB.txt
+HOST-RESOURCES-MIB HOST-RESOURCES-MIB.txt
+NET-SNMP-AGENT-MIB NET-SNMP-AGENT-MIB.txt
+IANA-LANGUAGE-MIB IANA-LANGUAGE-MIB.txt
+IP-FORWARD-MIB IP-FORWARD-MIB.txt
+SNMP-TSM-MIB SNMP-TSM-MIB.txt
+SNMPv2-CONF SNMPv2-CONF.txt
+SNMP-PROXY-MIB SNMP-PROXY-MIB.txt
+SNMP-NOTIFICATION-MIB SNMP-NOTIFICATION-MIB.txt
+TCP-MIB TCP-MIB.txt
+INET-ADDRESS-MIB INET-ADDRESS-MIB.txt
+
+
+
+/*****	MIBS搜索的路径   ******/
+DIR /usr/local/snmp/share/snmp/mibs
+DISMAN-SCRIPT-MIB DISMAN-SCRIPT-MIB.txt
+BRIDGE-MIB BRIDGE-MIB.txt
+TEST-MIB TEST-MIB1.txt
+UCD-DISKIO-MIB UCD-DISKIO-MIB.txt
+NOTIFICATION-LOG-MIB NOTIFICATION-LOG-MIB.txt
+UDP-MIB UDP-MIB.txt
+EtherLike-MIB EtherLike-MIB.txt
+TRANSPORT-ADDRESS-MIB TRANSPORT-ADDRESS-MIB.txt
+RFC-1215 RFC-1215.txt
+UCD-DLMOD-MIB UCD-DLMOD-MIB.txt
+SNMP-MPD-MIB SNMP-MPD-MIB.txt
+IP-MIB IP-MIB.txt
+IPV6-MIB IPV6-MIB.txt
+RMON-MIB RMON-MIB.txt
+HOST-RESOURCES-TYPES HOST-RESOURCES-TYPES.txt
+UCD-SNMP-MIB UCD-SNMP-MIB.txt
+NET-SNMP-TC NET-SNMP-TC.txt
+NET-SNMP-EXTEND-MIB NET-SNMP-EXTEND-MIB.txt
+SNMPv2-MIB SNMPv2-MIB.txt
+UCD-IPFWACC-MIB UCD-IPFWACC-MIB.txt
+SCTP-MIB SCTP-MIB.txt
+RFC1155-SMI RFC1155-SMI.txt
+SNMP-TARGET-MIB SNMP-TARGET-MIB.txt
+NET-SNMP-PASS-MIB NET-SNMP-PASS-MIB.txt
+IF-INVERTED-STACK-MIB IF-INVERTED-STACK-MIB.txt
+UCD-DEMO-MIB UCD-DEMO-MIB.txt
+IPV6-ICMP-MIB IPV6-ICMP-MIB.txt
+IANAifType-MIB IANAifType-MIB.txt
+NET-SNMP-MIB NET-SNMP-MIB.txt
+IANA-RTPROTO-MIB IANA-RTPROTO-MIB.txt
+TUNNEL-MIB TUNNEL-MIB.txt
+DISMAN-SCHEDULE-MIB DISMAN-SCHEDULE-MIB.txt
+RFC1213-MIB RFC1213-MIB.txt
+SNMP-COMMUNITY-MIB SNMP-COMMUNITY-MIB.txt
+SNMP-USM-DH-OBJECTS-MIB SNMP-USM-DH-OBJECTS-MIB.txt
+SNMP-USM-AES-MIB SNMP-USM-AES-MIB.txt
+SNMPv2-TM SNMPv2-TM.txt
+SNMP-VIEW-BASED-ACM-MIB SNMP-VIEW-BASED-ACM-MIB.txt
+IANA-ADDRESS-FAMILY-NUMBERS-MIB IANA-ADDRESS-FAMILY-NUMBERS-MIB.txt
+TEST-MIB TEST-MIB.txt
+IPV6-TCP-MIB IPV6-TCP-MIB.txt
+AGENTX-MIB AGENTX-MIB.txt
+SNMPv2-SMI SNMPv2-SMI.txt
+IF-MIB IF-MIB.txt
+SNMP-FRAMEWORK-MIB SNMP-FRAMEWORK-MIB.txt
+NET-SNMP-EXAMPLES-MIB NET-SNMP-EXAMPLES-MIB.txt
+IPV6-UDP-MIB IPV6-UDP-MIB.txt
+DISMAN-EVENT-MIB DISMAN-EVENT-MIB.txt
+HCNUM-TC HCNUM-TC.txt
+SMUX-MIB SMUX-MIB.txt
+NET-SNMP-VACM-MIB NET-SNMP-VACM-MIB.txt
+IPV6-FLOW-LABEL-MIB IPV6-FLOW-LABEL-MIB.txt
+SNMPv2-TC SNMPv2-TC.txt
+SNMP-USER-BASED-SM-MIB SNMP-USER-BASED-SM-MIB.txt
+IPV6-TC IPV6-TC.txt
+SNMP-TLS-TM-MIB SNMP-TLS-TM-MIB.txt
+HOST-RESOURCES-MIB HOST-RESOURCES-MIB.txt
+NET-SNMP-AGENT-MIB NET-SNMP-AGENT-MIB.txt
+IANA-LANGUAGE-MIB IANA-LANGUAGE-MIB.txt
+IP-FORWARD-MIB IP-FORWARD-MIB.txt
+SNMP-TSM-MIB SNMP-TSM-MIB.txt
+SNMPv2-CONF SNMPv2-CONF.txt
+SNMP-PROXY-MIB SNMP-PROXY-MIB.txt
+SNMP-NOTIFICATION-MIB SNMP-NOTIFICATION-MIB.txt
+TCP-MIB TCP-MIB.txt
+INET-ADDRESS-MIB INET-ADDRESS-MIB.txt
+root@molin-virtual-machine:/var/net-snmp/mib_indexes#
+root@molin-virtual-machine:/var/net-snmp/mib_indexes# cat 1
+DIR /usr/local/snmp/share/snmp/mibs
+DISMAN-SCRIPT-MIB DISMAN-SCRIPT-MIB.txt
+BRIDGE-MIB BRIDGE-MIB.txt
+TEST-MIB TEST-MIB1.txt
+UCD-DISKIO-MIB UCD-DISKIO-MIB.txt
+NOTIFICATION-LOG-MIB NOTIFICATION-LOG-MIB.txt
+UDP-MIB UDP-MIB.txt
+EtherLike-MIB EtherLike-MIB.txt
+TRANSPORT-ADDRESS-MIB TRANSPORT-ADDRESS-MIB.txt
+RFC-1215 RFC-1215.txt
+UCD-DLMOD-MIB UCD-DLMOD-MIB.txt
+SNMP-MPD-MIB SNMP-MPD-MIB.txt
+IP-MIB IP-MIB.txt
+IPV6-MIB IPV6-MIB.txt
+RMON-MIB RMON-MIB.txt
+HOST-RESOURCES-TYPES HOST-RESOURCES-TYPES.txt
+UCD-SNMP-MIB UCD-SNMP-MIB.txt
+NET-SNMP-TC NET-SNMP-TC.txt
+NET-SNMP-EXTEND-MIB NET-SNMP-EXTEND-MIB.txt
+SNMPv2-MIB SNMPv2-MIB.txt
+UCD-IPFWACC-MIB UCD-IPFWACC-MIB.txt
+SCTP-MIB SCTP-MIB.txt
+RFC1155-SMI RFC1155-SMI.txt
+SNMP-TARGET-MIB SNMP-TARGET-MIB.txt
+NET-SNMP-PASS-MIB NET-SNMP-PASS-MIB.txt
+IF-INVERTED-STACK-MIB IF-INVERTED-STACK-MIB.txt
+UCD-DEMO-MIB UCD-DEMO-MIB.txt
+IPV6-ICMP-MIB IPV6-ICMP-MIB.txt
+IANAifType-MIB IANAifType-MIB.txt
+NET-SNMP-MIB NET-SNMP-MIB.txt
+IANA-RTPROTO-MIB IANA-RTPROTO-MIB.txt
+TUNNEL-MIB TUNNEL-MIB.txt
+DISMAN-SCHEDULE-MIB DISMAN-SCHEDULE-MIB.txt
+RFC1213-MIB RFC1213-MIB.txt
+SNMP-COMMUNITY-MIB SNMP-COMMUNITY-MIB.txt
+SNMP-USM-DH-OBJECTS-MIB SNMP-USM-DH-OBJECTS-MIB.txt
+SNMP-USM-AES-MIB SNMP-USM-AES-MIB.txt
+SNMPv2-TM SNMPv2-TM.txt
+SNMP-VIEW-BASED-ACM-MIB SNMP-VIEW-BASED-ACM-MIB.txt
+IANA-ADDRESS-FAMILY-NUMBERS-MIB IANA-ADDRESS-FAMILY-NUMBERS-MIB.txt
+TEST-MIB TEST-MIB.txt
+IPV6-TCP-MIB IPV6-TCP-MIB.txt
+AGENTX-MIB AGENTX-MIB.txt
+SNMPv2-SMI SNMPv2-SMI.txt
+IF-MIB IF-MIB.txt
+SNMP-FRAMEWORK-MIB SNMP-FRAMEWORK-MIB.txt
+NET-SNMP-EXAMPLES-MIB NET-SNMP-EXAMPLES-MIB.txt
+IPV6-UDP-MIB IPV6-UDP-MIB.txt
+DISMAN-EVENT-MIB DISMAN-EVENT-MIB.txt
+HCNUM-TC HCNUM-TC.txt
+SMUX-MIB SMUX-MIB.txt
+NET-SNMP-VACM-MIB NET-SNMP-VACM-MIB.txt
+IPV6-FLOW-LABEL-MIB IPV6-FLOW-LABEL-MIB.txt
+SNMPv2-TC SNMPv2-TC.txt
+SNMP-USER-BASED-SM-MIB SNMP-USER-BASED-SM-MIB.txt
+IPV6-TC IPV6-TC.txt
+SNMP-TLS-TM-MIB SNMP-TLS-TM-MIB.txt
+HOST-RESOURCES-MIB HOST-RESOURCES-MIB.txt
+NET-SNMP-AGENT-MIB NET-SNMP-AGENT-MIB.txt
+IANA-LANGUAGE-MIB IANA-LANGUAGE-MIB.txt
+IP-FORWARD-MIB IP-FORWARD-MIB.txt
+SNMP-TSM-MIB SNMP-TSM-MIB.txt
+SNMPv2-CONF SNMPv2-CONF.txt
+SNMP-PROXY-MIB SNMP-PROXY-MIB.txt
+SNMP-NOTIFICATION-MIB SNMP-NOTIFICATION-MIB.txt
+TCP-MIB TCP-MIB.txt
+INET-ADDRESS-MIB INET-ADDRESS-MIB.txt
+
+
+执行命令： snmpd -f -Lo -Dread_config    查找使用的配置文件
+registered debug token read_config, 1
+read_config: reading premib configuration tokens
+read_config:path:  config path used for snmpd:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config:file: Reading configuration /usr/local/share/snmp/snmpd.conf (1)
+read_config:line: /usr/local/share/snmp/snmpd.conf:18 examining: trapsink  192.168.166.126
+read_config:line: /usr/local/share/snmp/snmpd.conf:23 examining: trap2sink  192.168.166.126
+read_config:line: /usr/local/share/snmp/snmpd.conf:28 examining: informsink  192.168.166.126
+read_config:line: /usr/local/share/snmp/snmpd.conf:29 examining: informsink  localhost
+read_config:line: /usr/local/share/snmp/snmpd.conf:34 examining: trapcommunity  public
+read_config:line: /usr/local/share/snmp/snmpd.conf:39 examining: authtrapenable  1
+read_config:line: /usr/local/share/snmp/snmpd.conf:52 examining: rwuser  admin auth
+read_config:line: /usr/local/share/snmp/snmpd.conf:57 examining: rouser  roNetSNMP auth .1.3.6.1.4.1.409894
+read_config:line: /usr/local/share/snmp/snmpd.conf:62 examining: rocommunity  public
+read_config:line: /usr/local/share/snmp/snmpd.conf:67 examining: rwcommunity  private 127.0.0.1
+read_config:line: /usr/local/share/snmp/snmpd.conf:68 examining: rwcommunity  privateHigh
+read_config:line: /usr/local/share/snmp/snmpd.conf:89 examining: syslocation  China
+read_config:line: /usr/local/share/snmp/snmpd.conf:99 examining: syscontact  contact@contact
+read_config:line: /usr/local/share/snmp/snmpd.conf:104 examining: sysservices 76
+read_config:line: /usr/local/share/snmp/snmpd.conf:125 examining: proc  init 1 1
+read_config:line: /usr/local/share/snmp/snmpd.conf:126 examining: proc  httpd
+read_config:line: /usr/local/share/snmp/snmpd.conf:141 examining: disk  / 30%
+read_config:line: /usr/local/share/snmp/snmpd.conf:155 examining: load  7 6 5
+read_config:line: /usr/local/share/snmp/snmpd.conf:167 examining: file  /var/log/snmpd.log 1024
+read_config:line: /usr/local/share/snmp/snmpd.conf:168 examining: file  /home/snmp/ 2
+read_config: /usr/local/share/snmp/snmpd.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for snmpd:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config:file: Reading configuration /var/net-snmp/snmpd.conf (1)
+read_config:line: /var/net-snmp/snmpd.conf:32 examining: setserialno 1317070196
+read_config:line: /var/net-snmp/snmpd.conf:44 examining: ifXTable .1 14:0 18:0x $
+read_config:line: /var/net-snmp/snmpd.conf:45 examining: ifXTable .2 14:0 18:0x $
+read_config:line: /var/net-snmp/snmpd.conf:49 examining: engineBoots 18
+read_config:line: /var/net-snmp/snmpd.conf:50 examining: oldEngineID 0x80001f88806a318754a20e606500000000
+read_config:parser: Found a parser.  Calling it: oldEngineID / 0x80001f88806a318754a20e606500000000
+read_config: /var/net-snmp/snmpd.local.conf: No such file or directory
+read_config:path:  config path used for snmp:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/snmp.conf: No such file or directory
+read_config: /usr/local/share/snmp/snmp.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for snmp:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/snmp.conf: No such file or directory
+read_config: /var/net-snmp/snmp.local.conf: No such file or directory
+read_config:path:  config path used for agentx:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/agentx.conf: No such file or directory
+read_config: /usr/local/share/snmp/agentx.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for agentx:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/agentx.conf: No such file or directory
+read_config: /var/net-snmp/agentx.local.conf: No such file or directory
+read_config: reading normal configuration tokens
+read_config:path:  config path used for snmpd:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config:file: Reading configuration /usr/local/share/snmp/snmpd.conf (0)
+read_config:line: /usr/local/share/snmp/snmpd.conf:18 examining: trapsink  192.168.166.126
+read_config:parser: Found a parser.  Calling it: trapsink / 192.168.166.126
+read_config:path:  config path used for hosts/192.168.166.126:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/hosts/192.168.166.126.conf: No such file or directory
+read_config: /usr/local/share/snmp/hosts/192.168.166.126.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for hosts/192.168.166.126:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/hosts/192.168.166.126.conf: No such file or directory
+read_config: /var/net-snmp/hosts/192.168.166.126.local.conf: No such file or directory
+read_config:line: /usr/local/share/snmp/snmpd.conf:23 examining: trap2sink  192.168.166.126
+read_config:parser: Found a parser.  Calling it: trap2sink / 192.168.166.126
+read_config:path:  config path used for hosts/192.168.166.126:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/hosts/192.168.166.126.conf: No such file or directory
+read_config: /usr/local/share/snmp/hosts/192.168.166.126.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for hosts/192.168.166.126:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/hosts/192.168.166.126.conf: No such file or directory
+read_config: /var/net-snmp/hosts/192.168.166.126.local.conf: No such file or directory
+read_config:line: /usr/local/share/snmp/snmpd.conf:28 examining: informsink  192.168.166.126
+read_config:parser: Found a parser.  Calling it: informsink / 192.168.166.126
+read_config:path:  config path used for hosts/192.168.166.126:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/hosts/192.168.166.126.conf: No such file or directory
+read_config: /usr/local/share/snmp/hosts/192.168.166.126.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for hosts/192.168.166.126:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/hosts/192.168.166.126.conf: No such file or directory
+read_config: /var/net-snmp/hosts/192.168.166.126.local.conf: No such file or directory
+read_config:line: /usr/local/share/snmp/snmpd.conf:29 examining: informsink  localhost
+read_config:parser: Found a parser.  Calling it: informsink / localhost
+read_config:path:  config path used for hosts/localhost:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/hosts/localhost.conf: No such file or directory
+read_config: /usr/local/share/snmp/hosts/localhost.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for hosts/localhost:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/hosts/localhost.conf: No such file or directory
+read_config: /var/net-snmp/hosts/localhost.local.conf: No such file or directory
+read_config:line: /usr/local/share/snmp/snmpd.conf:34 examining: trapcommunity  public
+read_config:parser: Found a parser.  Calling it: trapcommunity / public
+read_config:line: /usr/local/share/snmp/snmpd.conf:39 examining: authtrapenable  1
+read_config:parser: Found a parser.  Calling it: authtrapenable / 1
+read_config:line: /usr/local/share/snmp/snmpd.conf:52 examining: rwuser  admin auth
+read_config:parser: Found a parser.  Calling it: rwuser / admin auth
+read_config:line: /usr/local/share/snmp/snmpd.conf:57 examining: rouser  roNetSNMP auth .1.3.6.1.4.1.409894
+read_config:parser: Found a parser.  Calling it: rouser / roNetSNMP auth .1.3.6.1.4.1.409894
+read_config:line: /usr/local/share/snmp/snmpd.conf:62 examining: rocommunity  public
+read_config:parser: Found a parser.  Calling it: rocommunity / public
+read_config:line: /usr/local/share/snmp/snmpd.conf:67 examining: rwcommunity  private 127.0.0.1
+read_config:parser: Found a parser.  Calling it: rwcommunity / private 127.0.0.1
+read_config:line: /usr/local/share/snmp/snmpd.conf:68 examining: rwcommunity  privateHigh
+read_config:parser: Found a parser.  Calling it: rwcommunity / privateHigh
+read_config:line: /usr/local/share/snmp/snmpd.conf:89 examining: syslocation  China
+read_config:parser: Found a parser.  Calling it: syslocation / China
+read_config:line: /usr/local/share/snmp/snmpd.conf:99 examining: syscontact  contact@contact
+read_config:parser: Found a parser.  Calling it: syscontact / contact@contact
+read_config:line: /usr/local/share/snmp/snmpd.conf:104 examining: sysservices 76
+read_config:parser: Found a parser.  Calling it: sysservices / 76
+read_config:line: /usr/local/share/snmp/snmpd.conf:125 examining: proc  init 1 1
+read_config:parser: Found a parser.  Calling it: proc / init 1 1
+read_config:line: /usr/local/share/snmp/snmpd.conf:126 examining: proc  httpd
+read_config:parser: Found a parser.  Calling it: proc / httpd
+read_config:line: /usr/local/share/snmp/snmpd.conf:141 examining: disk  / 30%
+read_config:parser: Found a parser.  Calling it: disk / / 30%
+read_config:line: /usr/local/share/snmp/snmpd.conf:155 examining: load  7 6 5
+read_config:parser: Found a parser.  Calling it: load / 7 6 5
+read_config:line: /usr/local/share/snmp/snmpd.conf:167 examining: file  /var/log/snmpd.log 1024
+read_config:parser: Found a parser.  Calling it: file / /var/log/snmpd.log 1024
+read_config:line: /usr/local/share/snmp/snmpd.conf:168 examining: file  /home/snmp/ 2
+read_config:parser: Found a parser.  Calling it: file / /home/snmp/ 2
+read_config: /usr/local/share/snmp/snmpd.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for snmpd:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config:file: Reading configuration /var/net-snmp/snmpd.conf (0)
+read_config:line: /var/net-snmp/snmpd.conf:32 examining: setserialno 1317070196
+read_config:parser: Found a parser.  Calling it: setserialno / 1317070196
+read_config:line: /var/net-snmp/snmpd.conf:44 examining: ifXTable .1 14:0 18:0x $
+read_config:parser: Found a parser.  Calling it: ifXTable / .1 14:0 18:0x $
+read_config:line: /var/net-snmp/snmpd.conf:45 examining: ifXTable .2 14:0 18:0x $
+read_config:parser: Found a parser.  Calling it: ifXTable / .2 14:0 18:0x $
+read_config:line: /var/net-snmp/snmpd.conf:49 examining: engineBoots 18
+read_config:parser: Found a parser.  Calling it: engineBoots / 18
+read_config:line: /var/net-snmp/snmpd.conf:50 examining: oldEngineID 0x80001f88806a318754a20e606500000000
+read_config: /var/net-snmp/snmpd.local.conf: No such file or directory
+read_config:path:  config path used for snmp:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/snmp.conf: No such file or directory
+read_config: /usr/local/share/snmp/snmp.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for snmp:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/snmp.conf: No such file or directory
+read_config: /var/net-snmp/snmp.local.conf: No such file or directory
+read_config:path:  config path used for agentx:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/agentx.conf: No such file or directory
+read_config: /usr/local/share/snmp/agentx.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for agentx:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/agentx.conf: No such file or directory
+read_config: /var/net-snmp/agentx.local.conf: No such file or directory
+read_config:path:  config path used for hosts/:/usr/local/etc/snmp:/usr/local/share/snmp:/usr/local/lib/snmp:/root/.snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /usr/local/etc/snmp
+read_config:dir:  Directory not present: /usr/local/etc/snmp
+read_config:dir:  config dir: /usr/local/share/snmp
+read_config: /usr/local/share/snmp/hosts/.conf: No such file or directory
+read_config: /usr/local/share/snmp/hosts/.local.conf: No such file or directory
+read_config:dir:  config dir: /usr/local/lib/snmp
+read_config:dir:  Directory not present: /usr/local/lib/snmp
+read_config:dir:  config dir: /root/.snmp
+read_config:dir:  Directory not present: /root/.snmp
+read_config:path:  config path used for hosts/:/var/net-snmp (persistent path:/var/net-snmp)
+read_config:dir:  config dir: /var/net-snmp
+read_config:persist:  persist dir: /var/net-snmp
+read_config: /var/net-snmp/hosts/.conf: No such file or directory
+read_config: /var/net-snmp/hosts/.local.conf: No such file or directory
+read_config:store: storing: #
+# net-snmp (or ucd-snmp) persistent data file.
+#
+############################################################################
+# STOP STOP STOP STOP STOP STOP STOP STOP STOP
+#
+#          **** DO NOT EDIT THIS FILE ****
+#
+# STOP STOP STOP STOP STOP STOP STOP STOP STOP
+############################################################################
+#
+# DO NOT STORE CONFIGURATION ENTRIES HERE.
+# Please save normal configuration tokens for snmpd in SNMPCONFPATH/snmpd.conf.
+# Only "createUser" tokens should be placed here by snmpd administrators.
+# (Did I mention: do not edit this file?)
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+read_config:store: storing: setserialno 1317070197
+read_config:store: storing: ##############################################################
+read_config:store: storing: #
+# snmpNotifyFilterTable persistent data
+#
+read_config:store: storing: ##############################################################
+read_config:store: storing:
+
+read_config:store: storing: ##############################################################
+read_config:store: storing: #
+# ifXTable persistent data
+#
+read_config:store: storing: ifXTable .1 14:0 18:0x $
+read_config:store: storing: ifXTable .2 14:0 18:0x $
+read_config:store: storing: ##############################################################
+read_config:store: storing:
+
+read_config:store: storing: engineBoots 19
+read_config:store: storing: oldEngineID 0x80001f88806a318754a20e606500000000
+NET-SNMP version 5.7.3
+
