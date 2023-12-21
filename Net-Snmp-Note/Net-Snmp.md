@@ -59,11 +59,12 @@
 
 12. 运行snmpd代理
 
-      ```
-      执行命令： /usr/local/snmp/sbin/snmpd -c /usr/local/snmp/etc/snmpd.conf    --运行snmpd代理程序，-c用于链接配置文件
-      执行命令：  snmpd -Dread_config -H 2>&1 | grep "Reading"|sort -u:查看从哪里读取snmpd.conf配置文件
-      启动命令：./snmpd -Lo -f
-      ```
+       ```
+       执行命令： /usr/local/snmp/sbin/snmpd -c /usr/local/snmp/etc/snmpd.conf    --运行snmpd代理程序，-c用于链接配置文件
+       执行命令：  snmpd -Dread_config -H 2>&1 | grep "Reading"|sort -u:查看从哪里读取snmpd.conf配置文件
+       查看命令：snmpd -f -Lo -Dread_config
+       启动命令：./snmpd -Lo -f
+       ```
 
 12. 配置snmp工具的使用路径，这样子系统才能找到mib2c工具
 
@@ -531,9 +532,205 @@ iostat 查看系统IO状态
 
     > VACM提供了精确控制MIB访问的机制，可明确"谁"以什么样的方式和拥有什么权限来访问那些OID！！！！！
 
+    例子：
+
+    ```cmake
+    #-----------------------------配置----------------------------------------#
     
+    #-----------------------------第一步----------------------------------------#
+    #创建了两个安全名sec.name, 第一个名为local，指定其访问来源为localhost，
+    #即本机,其访问口令是secret42;第二个名为custom_sec，其访问来源限定为子网192.168.1.0/24,访问口令是public.
+    
+    #       sec.name  		 source          community
+    com2sec  local     		localhost         secret42
+    com2sec  custom_sec 	 default           public
+    
+    #createUser               username [-e ENGINEID] (MD5|SHA) authpassphrase [DES [privpassphrase]]
+    #create snmpv3 user
+    rwuser glsun
+    createUser glsun MD5 "glsun@0773" DES "glsun@0773" # 验证和密码都是glsun,这个放到/var/net-snmp/snmpd.conf
+    
+    
+    #-----------------------------第二步----------------------------------------#
+    #将安全名sec.name根据不同的安全模型sec.model创建分组
+    group  MyRWGroup v1          local
+    group  MyRWGroup v2c         local
+    
+    group custom_grp v1         custom_sec
+    group custom_grp v2c        custom_sec
+    
+    group incremental usm       glsun 
+    
+    #-----------------------------第三步----------------------------------------#
+    #创建不同的OID视图，即不同的子树
+    view all included .1            
+    
+    view custom_v excluded  .1              
+    view custom_v included  sysUpTime.0
+    view custom_v included  hrStorageTable
+    #              incl/excl  subtree     mask
+    view mini_view excluded .1 80
+    view mini_view included  sysUpTime.0
+    
+    view if_view excluded .1 80
+    view if_view included  sysUpTime.0
+    view if_view included  ifTable
+    
+    #-----------------------------第三步----------------------------------------#
+    #最后，根据不同的安全等级赋予group不同的可访问OID视图
+    #            组        上下文              安全模型               安全等级             读           写     发送通知权限
+    # access    GROUP     CONTEXT    {anylv1/v2c|usm / tsm / ksm}    LEVEL     PREFX    READ        WRITE      NOTTFY
+    access     MyRWGroup     ""                  v1                  noauth    exact     all         none       none
+    access     MyRWGroup     ""                  v2c                 noauth    exact   if_view       none       none
+    access     custom_grp    ""                  v1                  noauth    exact   mini_view     none       none
+    access     custom_grp    ""                  v2c                 noauth    exact   custom_v      none       none
+    
+    access     incremental   ""                  usm                 noauth    exact   mini_view     none       none
+    access     incremental   ""                  usm                  auth     exact   custom_v      none       none
+    access     incremental   ""                  usm                  priv     exact     all         none       none
+    
+    #-----------------------------结果----------------------------------------#
+    #上面的配置中，本地用户(MyRWGroup)在SNMP v1模式下，能够访问所有OID树；在v2c模式下，仅能访问IF-MIB::ifTable中数据.
+    # 默认来源用户(custom_grp)，即所有用户在SNMPv1模式下仅能得到sysUpTime.0的数据，在SNMPv2c模式下，能够访问sysUpTime.0和
+    #hrStorageTable中数据; usm模式下，noauth安全等级下，用户(cici)仅能访问sysUpTime.0的数据，
+    #auth安全等级下，能够访问sysUpTime.0和hrStorageTable数据，priv安全等级下，能够访问所有的OID树
+    ```
+
+## 常用工具
+
+### 协议操作工具
 
 
+
+![image-20231221092347223](./.assets/image-20231221092347223.png)
+
+![image-20231221092401306](./.assets/image-20231221092401306.png)
+
+```
+链接的snmpd.conf:
+			   rwuser MD5_DES_User_1 authpriv system
+			   rwuser MD5_DES_User_2 authpriv system
+			   rouser noAuth_User noauth system
+			   rouser MD5_User authNoPriv  system
+			   
+/var/net-snmp/snmpd.conf（持久数据信息）:
+			   createUser noAuth_User
+			   createUser MD5_User MD5 "glsun@0773"
+			   createUser MD5_DES_User_1  MD5 "glsun@MD5" DES    # 验证密码和加密密码一致:"glsun@MD5"
+			   createUser MD5_DES_User_2  MD5 "glsun@MD5" DES "glsun@DES" # 	   
+
+测试指令
+			  snmpgetnext -v 3 -n "" -u noAuth_User  -l NoauthNoPriv localhost sysUpTime.0
+			  snmpgetnext -v 3 -n "" -u MD5_User -a MD5 -A "glsun@0773" -l authNoPriv localhost sysUpTime.0   
+			  snmpgetnext -v 3 -n "" -u MD5_DES_User_1 -a MD5 -A "glsun@MD5" -x DES -X "glsun@MD5" -l authPriv localhost sysUpTime.0   
+			  snmpgetnext -v 3 -n "" -u MD5_DES_User_2 -a MD5 -A "glsun@MD5" -x DES -X "glsun@MD5" -l authPriv localhost sysUpTime.0  
+```
+
+### 信息收集和查看工具
+
+1. **snmpdf：**用于监控Agent磁盘的使用情况
+
+    ```
+    执行：
+    	snmpdf -v 2c -c public localhost
+    
+    回复:
+    	Description              Size (kB)            Used       Available Used%
+    	Physical memory            8144452         5964948         2179504   73%
+    	Virtual memory             9142848         5964948         3177900   65%
+    	Memory buffers             8144452          335728         7808724    4%
+    	Cached memory              4093968         4093968               0  100%
+    	Shared memory                33820           33820               0  100%
+    	Swap space                  998396               0          998396    0%
+    	/                        174342888        20425728       153917160   11%
+    	/run                        814448            9672          804776    1%
+    	/dev/shm                   4072224             288         4071936    0%
+    	/run/lock                     5120               4            5116    0%
+    	/sys/fs/cgroup             4072224               0         4072224    0%
+    	/run/user/1000              814448              64          814384    0%
+    ```
+
+2. **snmpstatus：**监控代理系统信息，包括系统描述，系统启动的时长，收发的包数等等情况
+
+    ```
+    执行：
+    	snmpstatus -v 2c -c public localhost
+    
+    系统答复：
+    		[UDP: [127.0.0.1]:161->[0.0.0.0]:33170]=>[Linux molin-virtual-machine 4.15.0-29-generic #31~16.04.1-Ubuntu SMP Wed Jul 18 			08:54:04 UTC 2018 x86_64] Up: 0:48:34.35Interfaces: 2, Recv/Trans packets: 23170652/1432488 | IP: 6246010/1384407
+    ```
+
+3. **snmptranslate：**可以用于验证是否正确的加载MIB文件，以字符或者数字的方式查看OID
+
+    ```
+    执行：
+    	snmptranslate -Onf -IR sysDescr
+    
+    回复：
+    	.iso.org.dod.internet.mgmt.mib-2.system.sysDescr
+    
+    执行：
+    	snmptranslate -On -IR sysDescr	
+    回复：
+    	.1.3.6.1.2.1.1.1
+    	
+    执行：snmptranslate -Td -OS .1.3.6.1.2.1.1.1   #查看OID详情
+    
+    回复：
+    	SNMPv2-MIB::sysDescr
+    	sysDescr OBJECT-TYPE
+      	-- FROM       SNMPv2-MIB
+     	-- TEXTUAL CONVENTION DisplayString
+     	SYNTAX        OCTET STRING (0..255)
+     	DISPLAY-HINT  "255a"
+     	MAX-ACCESS    read-only
+     	STATUS        current
+      	DESCRIPTION   "A textual description of the entity.  This value should
+                include the full name and version identification of
+                the system's hardware type, software operating-system,
+                and networking software."
+    	::= { iso(1) org(3) dod(6) internet(1) mgmt(2) mib-2(1) system(1) 1 }
+    ```
+
+### 配置工具
+
+> 配置工具主要完成代理运行环境、运行参数、辅助功能等的配置，包括配置管理对象获取权限、系统监控、代理角色、TRAP发送地址、SNMP v3用户名密码等。所以，正确地进行配置是代理运行的根本保障，当snmpd无法找到正确的配置文件时将无法启动
+
+1. **snmpconf：**用于创建snmpd.conf配置文件，通过一问一答的perl脚本来创建(通过二进制源码编译的过程是不会产生现成的配置文件snmpd.conf,得执行命令` snmpconf -g basic_setup`来生成配置文件，当然也可以直接复制二进制源码包的配置文件，然后进行修改)
+
+    ```
+    指令格式：
+    	    snmpconf [option]  [fileToCreate]
+    常用option：
+    		 -f（强制重写配置文件）
+    		 -i(生成的配置文件自动放到snmpd配置系统目录中)
+    		 -I（指定生成存放的目录）
+    		 -a(读取配置文件中的内容并且自动生成注释，同时写入到指定的文件)
+    		 -R（读取配置文件）
+    例子：
+    	snmpconf -R /usr/local/snmp/snmpd.conf -a -f snmpd.conf（读取“/usr/local/snmp/snmpd.conf”文件的有效内容（标记），自动添加注释后，写入到当前目录下的snmpd.conf文件中）
+    ```
+
+2. **net-snmp-config：**用来查看Net-SNMP安装的库和二进制程序的相关信息，具体可以通过命令`net-snmp-config -h`来查看
+
+    ```
+    常用选项：
+    	   net-snmp-config --snmpconfpath(查看系统配置文件的搜索路径)
+    	   net-snmp-config --default-mibdirs(查看系统MIB搜索的路径)
+    	   net-snmp-config --persistent-directory(查看永久文件的搜索路径)
+    	   net-snmp-config --perlprog(查看perl安装的路径)
+    	   net-snmp-config -prefix（安装路径）
+    	   net-snmp-config --configure-options(配置选项)
+    	   net-snmp-config --snmpd-module-list(查看已编译的模块列表)
+    ```
+
+### 权限配置工具
+
+1. **snmpusm：**管理SNMPV3用户工具，包括用户的创建，复制，删除，更改等
+
+2. **snmpvacm：**用于创建和控制基于视图的访问控制![image-20231221141906009](./.assets/image-20231221141906009.png)
+
+    
 
 ##  管理端开发
 
@@ -963,5 +1160,45 @@ int main(int argc, char **argv)
 }
 ```
 
+## 代理端开发
 
+### 开发代理流程
+
+1. 定义私有MIB
+2. 私有mib2c生成代码框架
+3. 添加业务代码
+4. 编译私有MIB模块：动态、静态或子代理等模块开发
+5. 配置snmpd.conf
+6. 测试与调试
+7. 发布
+
+### mib2c框架
+
+> 通过mib2c和代码框架配置文件生成MIB节点的.c和.h文件，添加业务功能就可以直接使用
+
+1. MIB的注册
+2. GET请求处理
+3. STE请求处理
+
+命令：`mib2c -c 框架  MIB节点`
+
+```
+mib2c -c mib2c.scalar.conf BOOK-EXAMPLE-MIB::exampleObject
+```
+
+**生成代码处理流程**
+
+1. MODE_GET：获取OID节点的值；需要用户在该步骤实现数据返回。值的内存地址和值的占用空间的长度
+2. MODE_SET_RESERVE1：设置流程预处理步骤一，用于检查设置值的有效性，如类型和大小，最大值、值域范围等
+3. MODE_SET_RESERVE2：设置流程预处理步骤二，如果有需要的话可以在这个步骤中分配必要的内存空间和保存旧值
+4. MODE_SET_FREE：当设置失败等错误时，释放步骤2），3）中涉及分到分配的内存
+5. MODE_SET_ACTION：执行设置命令，写入设置值到内存中；如果有必要也可以在此处保存旧值
+6. MODE_SET_COMMIT：到达该步骤时，说明已经设置成功，可以删除临时内存，旧值、记录设置日志等
+7. MODE_SET_UNDO：回退步骤。如果设置对象后，由于系统产生错误需要回退到原始值时则执行该步骤。原始的值，往往就是保存在步骤2）或3）中分配的临时内存
+
+**表格框架：iterate**
+
+```
+mib2c -c mib2c.iterate.conf BOOK-EXAMPLE-MIB::exampleObject
+```
 
