@@ -1196,9 +1196,27 @@ mib2c -c mib2c.scalar.conf BOOK-EXAMPLE-MIB::exampleObject
 6. MODE_SET_COMMIT：到达该步骤时，说明已经设置成功，可以删除临时内存，旧值、记录设置日志等
 7. MODE_SET_UNDO：回退步骤。如果设置对象后，由于系统产生错误需要回退到原始值时则执行该步骤。原始的值，往往就是保存在步骤2）或3）中分配的临时内存
 
-**表格框架：iterate**
+**表格框架：iterate、iterate_access**
 
 ```
-mib2c -c mib2c.iterate.conf BOOK-EXAMPLE-MIB::exampleObject
+mib2c -c mib2c.iterate.conf BOOK-EXAMPLE-MIB::exampleObject			
+
+mib2c -c mib2c.iterate_access.conf BOOK-EXAMPLE-MIB::exampleObject（推荐使用） 
+iterate_access生成文件说明:
+						exampleObject_checkfns.h：检查表格列的值和类型的函数声明
+						exampleObject_checkfns_local.c：数据有效性检查函数的实现，需要用户自己实现
+						exampleObject_columns.h：表格中的每列都定义为宏序号
+						exampleObject_access.c：数据获取函数和迭代函数的实现
+						exampleObject.c：模块主函数
+						exampleObject_checkfns.c：数据有效性检查函数
+						exampleObject_enums.h：如果MIB中有枚举类型，则定义相应的宏
+						exampleObject_access.h：主要是迭代器声明
+						exampleObject.h：模块中用到的头文件汇总、命令响应句柄声明
+						exampleObject_checkfns_local.h：检查表格中可设置列的值和类型的函数声明
+		   只需要修改文件：
+		   				exampleObject_checkfns_local.h：检查表格中可设置列的值和类型的函数声明
+						exampleObject_checkfns_local.c：数据有效性检查函数的实现，需要用户自己实现
+						exampleObject_access.h：主要是迭代器声明
+						exampleObject_access.c：数据获取函数和迭代函数的实现
 ```
 

@@ -21,7 +21,7 @@ init_exampleObject(void)
 
 /** Initialize the simpleTable table by defining its contents and how it's structured */
 void
-initialize_table_simpleTable(void)
+initialize_table_simpleTable(void)   //注册表格信息
 {
     const oid simpleTable_oid[] = {1,3,6,1,4,1,9999,3,9};
     const size_t simpleTable_oid_len   = OID_LENGTH(simpleTable_oid);
@@ -74,7 +74,7 @@ struct simpleTable_entry {
     struct simpleTable_entry *next;
 };
 
-struct simpleTable_entry  *simpleTable_head;
+struct simpleTable_entry  *simpleTable_head;  //该链表结构体存储了真实的表格数据
 
 /* create a new row in the (unsorted) table */
 struct simpleTable_entry *
